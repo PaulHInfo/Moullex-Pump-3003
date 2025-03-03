@@ -54,5 +54,27 @@
                 "imgB64": ""
             }
         ]
+    },
+    "jambes": {
+        "exo": [
+            {
+                "name": "squat normal",
+                "obj": false,
+                "objListe": [],
+                "imgB64": ""
+            },
+                        {
+                "name": "squat sauté",
+                "obj": false,
+                "objListe": [],
+                "imgB64": ""
+            },
+                        {
+                "name": "squat sumo",
+                "obj": false,
+                "objListe": [],
+                "imgB64": ""
+            }
+        ]
     }
 }
