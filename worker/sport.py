@@ -3,7 +3,6 @@ import random
 
 
 # type = 1 -> endurance, type = 2 -> explosif
-
 def creatExos(part, nbExo,type = 2):
     if nbExo <= 0:
         nbExo = random.randint(3, 6)
