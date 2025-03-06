@@ -2,7 +2,7 @@ import discord
 from discord.ext import commands
 from worker import sport
 
-TOKEN = ""
+TOKEN = "Your token (discord)"
 
 # Configurez les intents
 intents = discord.Intents.default()
