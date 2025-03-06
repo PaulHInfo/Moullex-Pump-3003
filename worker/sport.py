@@ -1,9 +1,7 @@
 from worker import fileReader
 import random
-
-
 # type = 1 -> endurance, type = 2 -> explosif
-def creatExos(part, nbExo,type = 2):
+def creatExos(part, nbExo,type):
     if nbExo <= 0:
         nbExo = random.randint(3, 6)
     listExo = fileReader.getData(part)
@@ -23,8 +21,6 @@ def creatExos(part, nbExo,type = 2):
         i = i + 1
         if i == nbExo:
             break
-
-    #print(listExoSelectionne)
     # 2 ) def si explo ou endu
     for e in listExoSelectionne:
         #print(e["name"])
@@ -51,10 +47,42 @@ def creatMsg(listExo, part):
     print(msg)
     return msg
 
-async def chekCommande(cmd):
+async def chekCommande(cmd: str):
+    print("cmd")
     print(cmd)
-    return "test"
-
-
-#listExo = creatExos("bras", 0)
-#creatMsg(listExo, "bras")
+    parts = cmd.split()
+    parsed = {"command": parts[0]}
+    for part in parts[1:]:
+        if part.startswith("--"):
+            key = part[2:]
+            parsed[key] = None
+        elif key:
+            parsed[key] = part
+            key = None
+    # --type == en && ex
+    type = 1
+    part = ""
+    print(parsed)
+    if 'type' in parsed:
+        print(parsed["type"])
+        if parsed["type"] != "en" and parsed["type"] != "ex":
+            if parsed["type"] == "en":
+                type = 1
+            else:
+                type = 2
+        else:
+            print("value null")
+            return "ERROR PARA"
+    else:
+        print("value null")
+    if "part" in parsed:
+        match parsed["part"]:
+            case "bras":
+                part = parsed["part"]
+            case "pecs":
+                part = parsed["part"]
+            case "jambe":
+                part = parsed["part"]
+            case _:
+                return "ERROR PARA"
+    return creatMsg(creatExos(part, 6, parts), part)
